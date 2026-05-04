@@ -82,36 +82,18 @@ if (isset($_GET['cat_id'])) {
             <div class="tab-content">
                 <div id="tab-1" class="tab-pane fade show p-0 active">
                     <div class="row g-4">
-                        <?php 
-                        $productresult=getproductbyid($cat_id);
-                        while($productrow=mysqli_fetch_assoc($productresult)){
-                            ?>
-                            <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                            <div class="product-item">
-                                <div class="position-relative bg-light overflow-hidden">
-                                    <img class="img-fluid w-100" src="<?= $productrow['prod_img'] ?>" alt="">
-                                </div>
-                                <div class="text-center p-4">
-                                    <a class="d-block h5 mb-2" href=""><?= $productrow['prod_name']?></a>
-                                    <span class="text-primary me-1">$<?= $productrow['prod_price']?></span>
-                                </div>
-                                <div class="d-flex border-top">
-                                    <small class="w-50 text-center border-end py-2">
-                                        <a class="text-body" href=""><i class="fa fa-eye text-primary me-2"></i>View detail</a>
-                                    </small>
-                                    <small class="w-50 text-center py-2">
-                                        <a class="text-body" href=""><i class="fa fa-shopping-bag text-primary me-2"></i>Add to cart</a>
-                                    </small>
-                                </div>
-                            </div>
-                        </div>
-                            <?php
+                        <?php if (isset($_GET['itemid'])){
+                            $_SESSION['prod'. $_GET['itemid']]+=1;
                         }
+                        print_r($_SESSION);
+                        ?>
+                        <?php 
+                       include('items.php');
 
                         ?>
 
                         <div class="col-12 text-center wow fadeInUp" data-wow-delay="0.1s">
-                            <a class="btn btn-primary rounded-pill py-3 px-5" href="">Proceed to checkout</a>
+                            <a class="btn btn-primary rounded-pill py-3 px-5" href="checkout.php">Proceed to checkout</a>
                         </div>
                     </div>
                 </div>

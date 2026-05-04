@@ -1,4 +1,5 @@
 <?php 
+session_start();
 defined('LOCALHOST')?null:define('LOCALHOST','localhost');
 defined('USERNAME')?null:define('USERNAME','root');
 defined('PASSWORD')?null:define('PASSWORD','');
@@ -29,6 +30,8 @@ function getproductbyid($id){
 
     }
 }
-
+function getproductdetail($id){
+    return query("select * from product where prod_id=$id");
+}
 
     ?>
